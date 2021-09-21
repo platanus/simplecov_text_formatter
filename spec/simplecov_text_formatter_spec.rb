@@ -1,15 +1,34 @@
 require "spec_helper"
 
-describe SimplecovTextFormatter do
+describe SimpleCov::Formatter::TextFormatter do
+  let(:result) do
+    double(
+      command_name: "X",
+      covered_lines: 1,
+      total_lines: 10,
+      covered_percent: 10
+    )
+  end
+
+  let(:result_formatter) do
+    double(format: true)
+  end
+
+  let(:result_exporter) do
+    double(export: true)
+  end
+
+  def format
+    described_class.new.format(result)
+  end
+
   before do
-    helper_example
+    allow(SimpleCovTextFormatter::ResultFormatter)
+      .to receive(:new).and_return(result_formatter)
+
+    allow(SimpleCovTextFormatter::ResultExporter)
+      .to receive(:new).and_return(result_exporter)
   end
 
-  it "has a version number" do
-    expect(SimplecovTextFormatter::VERSION).not_to be nil
-  end
-
-  it "does something useful" do
-    expect(false).to eq(true)
-  end
+  it { expect(format).to eq(nil) }
 end
