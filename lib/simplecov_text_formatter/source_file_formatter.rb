@@ -52,13 +52,17 @@ module SimpleCovTextFormatter
       line_numbers.each_with_index do |line_number, index|
         current_batch << line_number
 
-        if line_number + 1 != line_numbers[index + 1]
+        if !near_lines?(line_number, line_numbers[index + 1])
           batches << current_batch
           current_batch = []
         end
       end
 
       batches
+    end
+
+    def near_lines?(line, next_line)
+      [*line..line + 2].include?(next_line)
     end
 
     def full_coverage?

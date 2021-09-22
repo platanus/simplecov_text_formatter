@@ -98,6 +98,31 @@ describe SimpleCovTextFormatter::SourceFileFormatter do
     it { expect(format).to eq(expected_lines) }
   end
 
+  context "with two near not consecutive lines" do
+    let(:line2) do
+      instance_double(
+        "SimpleCov::SourceFile::Line",
+        coverage: 0,
+        line_number: 3
+      )
+    end
+
+    let(:lines) do
+      [
+        line,
+        line2
+      ]
+    end
+
+    let(:expected_lines) do
+      [
+        "file.rb:1:1: Not covered lines: 1 and 3"
+      ]
+    end
+
+    it { expect(format).to eq(expected_lines) }
+  end
+
   context "with more than two consecutive lines" do
     let(:line2) do
       instance_double(
