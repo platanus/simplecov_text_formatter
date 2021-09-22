@@ -5,7 +5,7 @@
 
 Text formatter for SimpleCov code coverage tool
 
-***Note: To learn more about SimpleCov, check out the main repo at [https://github.com/simplecov-ruby/simplecov](https://github.com/colszowka/simplecov***)***
+***Note: To learn more about SimpleCov, check out the main repo at [https://github.com/simplecov-ruby/simplecov](https://github.com/colszowka/simplecov)***
 
 ## Installation
 

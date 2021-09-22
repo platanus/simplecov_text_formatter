@@ -1,7 +1,7 @@
 require 'simplecov'
-require 'coveralls'
+require "simplecov_text_formatter"
 
-formatters = [SimpleCov::Formatter::HTMLFormatter, Coveralls::SimpleCov::Formatter]
+formatters = [SimpleCov::Formatter::HTMLFormatter, SimpleCov::Formatter::TextFormatter]
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter::new(formatters)
 
 SimpleCov.start do
@@ -10,7 +10,6 @@ SimpleCov.start do
 end
 
 $LOAD_PATH.unshift File.expand_path("../lib", __dir__)
-require "simplecov_text_formatter"
 require "pry"
 
 path = [File.dirname(__FILE__), "support", "**", "*.rb"]
